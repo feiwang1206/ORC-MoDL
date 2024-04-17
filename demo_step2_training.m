@@ -29,9 +29,9 @@ recon_initial(traj,pname_s,pname_d{1});
             net_recon{iter}=load([dirname '/net_block' num2str(iter) '.mat'],'net');
         else
             if iter==1
-                prepare_input_label(dirname,fname,50,net_type,1e-3);
+                training(dirname,fname,50,net_type,1e-3);
             else
-                prepare_input_label(dirname,fname,20,net_type,1e-4);
+                training(dirname,fname,20,net_type,1e-4);
             end                
             copyfile([dirname '/net_block.mat'],[dirname '/net_block' num2str(iter) '.mat']);
             copyfile([dirname '/info.mat'],[dirname '/info' num2str(iter) '.mat']);
