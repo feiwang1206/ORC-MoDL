@@ -94,18 +94,18 @@ for ii=1:2
                 'maxit',maxiter,'verbose_flag',0,'z0',image_c2)));
 
             image=zeros([dim 5]);
-            image(:,:,:,1)=real(gather(image_c1))/norm;
-            image(:,:,:,2)=real(gather(image_c2))/norm;
-            image(:,:,:,3)=imag(gather(image_c1))/norm;
-            image(:,:,:,4)=imag(gather(image_c2))/norm;
+            image(:,:,:,1)=real(gather(recon{1}))/norm;
+            image(:,:,:,2)=real(gather(recon{2}))/norm;
+            image(:,:,:,3)=imag(gather(recon{1}))/norm;
+            image(:,:,:,4)=imag(gather(recon{2}))/norm;
             image(:,:,:,5)=(gather(field))/1000;
             image=single(image);
             save(fname_input,'image');
 
             image=zeros([dim 3]);
             image(:,:,:,1)=gather(imresize3D(recon{6},dim)-field)/100;
-            image(:,:,:,2)=gather(real(imresize3D(recon{11},dim)*sqrt(prod(dim0)/prod(dim))-(image_c1+image_c2)/2))/norm;
-            image(:,:,:,3)=gather(imag(imresize3D(recon{11},dim)*sqrt(prod(dim0)/prod(dim))-(image_c1+image_c2)/2))/norm;
+            image(:,:,:,2)=gather(real(imresize3D(recon{11},dim)*sqrt(prod(dim0)/prod(dim))-(recon{1}+recon{2})/2))/norm;
+            image(:,:,:,3)=gather(imag(imresize3D(recon{11},dim)*sqrt(prod(dim0)/prod(dim))-(recon{1}+recon{2})/2))/norm;
             image=single(image);
             save(fname_label,'image');
 
